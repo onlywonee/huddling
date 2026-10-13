@@ -44,6 +44,20 @@ $korean-code-comments src/app/page.tsx에 한국어 설명 주석 달아줘.
 
 설정이 현재 대화에 나타나지 않으면 프로젝트를 다시 열거나 새 Codex 세션을 시작합니다. 에이전트 정의의 등록과 실제 Figma 디자인 검증은 별개입니다. Figma 작업에는 연결된 플러그인과 fileKey·nodeId를 확인할 수 있는 노드 URL이 필요합니다. URL 없이 특정 디자인과 일치한다고 검증할 수 없습니다.
 
-Storybook, Vitest, Style Dictionary는 아직 설치되지 않았습니다. 에이전트는 설치 여부를 확인한 뒤 해당 작업을 수행하며 미설치 명령을 실행하거나 의존성을 임의 추가하지 않습니다.
+## 컴포넌트·토큰 개발 도구
+
+Storybook 10, Vitest 5, Style Dictionary 5와 Playwright를 설정했습니다. Node.js 22.12 이상이 필요하며 브라우저 검사는 Google Chrome을 사용합니다.
+
+```bash
+npm run build:tokens
+npm run test
+npm run storybook
+npm run build-storybook
+npm run test:browser
+```
+
+Storybook은 http://localhost:6006 에서 확인합니다. `src/components/ui/Button`은 실행 검증용 기본 예제이며 Figma 최종 디자인이 아닙니다. Storybook의 play 함수는 현재 버전의 `storybook/test`를 사용합니다. Storybook 전역 CSS는 `scripts/storybook-tailwind.ts`에서 Next.js와 같은 Tailwind 엔진으로 처리합니다.
+
+원본 토큰은 `tokens/light.json`, `tokens/dark.json`이며 생성 파일은 직접 수정하지 않습니다. [토큰 매핑](docs/design-tokens.md)에서 현재 값을 확인합니다. Figma 토큰과의 실제 비교는 노드 URL이 제공된 뒤 수행합니다.
 
 공식 설정 형식: [Codex 서브에이전트](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Codex 스킬](https://learn.chatgpt.com/docs/build-skills).

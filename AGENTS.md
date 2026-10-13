@@ -92,6 +92,8 @@
 - 에이전트 모델은 부모 Codex 설정을 상속한다. `sonnet` 또는 `inherit` 문자열을 Codex 모델명으로 지정하지 않는다.
 - 질문과 필요한 승인은 부모 에이전트가 사용자와 확인하고 전달한다. 기존 지시로 이미 결정된 항목을 다시 묻지 않는다.
 - Figma 연결과 스킬은 현재 세션에서 노출된 것을 사용한다. get_design_context 전에 figma-design-to-code 스킬을 읽는다. 연결이 없거나 디자인 자료가 부족하면 미검사 또는 미완료로 보고한다.
-- Storybook, Vitest, Style Dictionary와 토큰 생성 명령은 현재 미설치다. 관련 파일이나 명령이 있다고 가정하지 않으며 설치는 별도 요청 범위에서 진행한다.
+- Storybook 10, Vitest 5, Style Dictionary 5와 Playwright가 설정돼 있다. `npm run build:tokens`, `npm run test`, `npm run build-storybook`, `npm run test:browser`로 확인한다. 브라우저 검사는 Google Chrome 설치가 필요하다.
+- 디자인 토큰 원본은 `tokens/light.json`, `tokens/dark.json`이다. `src/tokens/_generated*.css`는 생성 결과이며 직접 수정하지 않는다. 현재 값은 초기 Next.js 기본 색상이고 Figma 확정값이 아니다.
+- Storybook의 인터랙션 도구는 현재 버전에 맞춰 `storybook/test`에서 가져온다. 강의의 `@storybook/test` 패키지명을 그대로 사용하지 않는다.
 - 커스텀 에이전트가 현재 세션에서 아직 인식되지 않으면 Codex에서 프로젝트를 다시 열거나 새 세션을 시작한다. 읽기만 한 지침을 실제 실행 검증했다고 보고하지 않는다.
 - 위임 도구에 커스텀 유형 선택 옵션이 없는 환경에서는 일반 서브에이전트를 생성하고 작업 메시지에 `.codex/agents/[이름].toml`을 먼저 읽어 `developer_instructions`를 적용하도록 명시한다. 모델은 부모 설정을 상속한다. 이 방식은 지침을 전달한 위임이며 커스텀 유형의 자동 로드와는 구분해 보고한다.
